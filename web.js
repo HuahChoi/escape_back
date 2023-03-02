@@ -10,14 +10,15 @@ class Server {
   }
   
   const server = new Server().app;
-  server.use(cors()); //모든 cross-origin 요청에 대해 응답
+  
   server.use(express.json()); 
   server.use(express.urlencoded({ extended: false }));
-  //또는 헤더 설정 use((req, res) => {
-  //	res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
-  //    });
+  server.use(cors()); //모든 cross-origin 요청에 대해 응답
+  server.use((req, res) => {
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
+    });
   
-  server.set('port', 3000);
+  server.set('port', 80);
   server.use(express.urlencoded({ extended: true }));
 
   // (post) QR 코드 찍었을 때
