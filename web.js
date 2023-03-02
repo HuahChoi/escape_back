@@ -1,12 +1,16 @@
 "use strict";
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 8001;
 const db = require('./config/db.js');
 
+app.use(cors());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }));
+const server = new Server().app;
+server.use(cors()); //모든 cross-origin 요청에 대해 응답
 
 // (post) QR 코드 찍었을 때
 app.post('/qr', async (req,res)=>{
@@ -29,7 +33,7 @@ app.post('/qr', async (req,res)=>{
 })
 
 // sns 로그인 체크(미완)
-app.post('/snslog',(req,res)=>{
+/* app.post('/snslog',(req,res)=>{
     console.log('snscheck')
 
     db.query(`select * from bdcb_members where id=${logid}`, (err,data) => {
@@ -45,7 +49,7 @@ app.post('/snslog',(req,res)=>{
             res.json({ logchk: "false", error: "통신에러!" });
         }
     })
-})
+}) */
 
 // 로그인 체크
 app.post('/logcheck',(req,res)=>{
