@@ -1,12 +1,16 @@
 "use strict";
 
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const PORT = 8001;
 const db = require('./config/db.js');
 
+app.use(cors());
 app.use(express.json()); 
 app.use(express.urlencoded({ extended: false }));
+const server = new Server().app;
+server.use(cors()); //모든 cross-origin 요청에 대해 응답
 
 // (post) QR 코드 찍었을 때
 app.post('/qr', async (req,res)=>{
