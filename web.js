@@ -15,7 +15,7 @@ class Server {
   server.use(express.urlencoded({ extended: false }));
   server.use(cors()); //모든 cross-origin 요청에 대해 응답
   server.use((req, res) => {
-    res.header("Access-Control-Allow-Origin", "http://localhost:3000"); // 모든 도메인
+    res.header("Access-Control-Allow-Origin", "*"); // 모든 도메인
     });
   
   server.set('port', 80);
