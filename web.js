@@ -78,6 +78,10 @@ server.post('/logcheck',(req,res)=>{
         }
     })
 })
+server.get('/logcheck',(req,res)=>{
+    console.log('logcheck');
+    res.send('아무');
+})
 
 // 코스 정보 불러오기
 server.post('/coursedata',(req,res)=>{
